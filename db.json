@@ -1,0 +1,117 @@
+{
+  "accounts": [
+    {
+      "id": "ACC-001",
+      "name": "Conto Principale",
+      "type": "PRIVATE",
+      "balance": 12450.0,
+      "iban": "IT68D0300203280000400162854"
+    },
+    {
+      "id": "ACC-002",
+      "name": "Conto Business",
+      "type": "BUSINESS",
+      "balance": 87320.5,
+      "iban": "IT60X0542811101000000123456"
+    }
+  ],
+  "movements": [
+    {
+      "id": "MOV-001",
+      "accountId": "ACC-001",
+      "date": "2025-03-15",
+      "description": "Stipendio Marzo",
+      "amount": 2500.0,
+      "type": "CREDIT",
+      "category": "Lavoro"
+    },
+    {
+      "id": "MOV-002",
+      "accountId": "ACC-001",
+      "date": "2025-03-16",
+      "description": "Affitto Marzo",
+      "amount": -850.0,
+      "type": "DEBIT",
+      "category": "Casa"
+    },
+    {
+      "id": "MOV-003",
+      "accountId": "ACC-001",
+      "date": "2025-03-17",
+      "description": "Pagamento Utenze",
+      "amount": -210.0,
+      "type": "DEBIT",
+      "category": "Utenze"
+    },
+    {
+      "id": "MOV-004",
+      "accountId": "ACC-002",
+      "date": "2025-03-14",
+      "description": "Fattura Cliente Alpha",
+      "amount": 15000.0,
+      "type": "CREDIT",
+      "category": "Incassi"
+    },
+    {
+      "id": "MOV-005",
+      "accountId": "ACC-002",
+      "date": "2025-03-15",
+      "description": "Pagamento Fornitore Beta",
+      "amount": -3200.0,
+      "type": "DEBIT",
+      "category": "Fornitori"
+    }
+  ],
+  "investments": [
+    {
+      "id": "INV-001",
+      "accountId": "ACC-001",
+      "name": "BTP Italia 2028",
+      "type": "BOND",
+      "quantity": 10000,
+      "purchasePrice": 98.5,
+      "currentPrice": 101.2
+    },
+    {
+      "id": "INV-002",
+      "accountId": "ACC-001",
+      "name": "ETF MSCI World",
+      "type": "ETF",
+      "quantity": 50,
+      "purchasePrice": 85.0,
+      "currentPrice": 92.3
+    }
+  ],
+  "branches": [
+    {
+      "id": "BR-001",
+      "name": "Filiale Milano Centro",
+      "city": "Milano",
+      "address": "Via Roma 1",
+      "phone": "+39 02 1234567"
+    },
+    {
+      "id": "BR-002",
+      "name": "Filiale Roma EUR",
+      "city": "Roma",
+      "address": "Viale Europa 100",
+      "phone": "+39 06 7654321"
+    }
+  ],
+  "users": [
+    {
+      "id": "USR-001",
+      "email": "mario.rossi@email.com",
+      "firstName": "Mario",
+      "lastName": "Rossi",
+      "role": "CUSTOMER"
+    },
+    {
+      "id": "USR-ADM",
+      "email": "admin@liparibank.it",
+      "firstName": "Admin",
+      "lastName": "LipariBank",
+      "role": "ADMIN"
+    }
+  ]
+}
