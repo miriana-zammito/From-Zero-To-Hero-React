@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import type { Movement } from "@/types";
 import styles from "./MovementRow.module.css";
 
@@ -22,11 +23,16 @@ export default function MovementRow({ movement, onClick }: MovementRowProps) {
   const formattedDate = dateFormatter.format(new Date(movement.executedAt));
   const formattedAmount = amountFormatter.format(movement.amount);
 
+  const handleClick = useCallback(() => {
+    onClick(movement.id);
+  }, [onClick, movement.id]);
+
   return (
     <button
       type="button"
       className={styles.row}
-      onClick={() => onClick(movement.id)}
+      onClick={handleClick}
+      aria-label={`${movement.description}, ${isCredit ? "accredito" : "addebito"} ${formattedAmount}, ${formattedDate}`}
     >
       <div className={styles.left}>
         <span className={styles.description}>{movement.description}</span>

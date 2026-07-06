@@ -1,23 +1,12 @@
+import { memo } from 'react';
 import type { Movement } from '@/types';
 import styles from './TransactionItem.module.css';
 
 interface TransactionItemProps {
   movement: Movement;
-  onClick?: (id: string) => void;
 }
 
-const dateFormatter = new Intl.DateTimeFormat('it-IT', {
-  day: '2-digit',
-  month: 'short',
-  year: 'numeric',
-});
-
-const amountFormatter = new Intl.NumberFormat('it-IT', {
-  style: 'currency',
-  currency: 'EUR',
-});
-
-/* ── Icone inline per categoria ── */
+/* ── Icone SVG per categoria (restaurate) ── */
 
 function CategoryIcon({ category }: { category: string }) {
   const props = {
@@ -77,18 +66,62 @@ function CategoryIcon({ category }: { category: string }) {
   }
 }
 
+/* ── Component map per badge categoria ── */
+
+const BADGE_CLASS_MAP: Record<string, string> = {
+  salary: styles.badgeSalary,
+  shopping: styles.badgeShopping,
+  food: styles.badgeFood,
+  utilities: styles.badgeUtilities,
+  transfer: styles.badgeTransfer,
+};
+
+const BADGE_LABEL_MAP: Record<string, string> = {
+  salary: 'Stipendio',
+  shopping: 'Acquisto',
+  food: 'Cibo',
+  utilities: 'Utenze',
+  transfer: 'Bonifico',
+};
+
+/* ── Component map per direzione ── */
+
+interface DirectionBadgeConfig {
+  className: string;
+  label: string;
+}
+
+const DIRECTION_MAP: Record<string, DirectionBadgeConfig> = {
+  credit: { className: styles.directionCredit, label: '↑ Entrata' },
+  debit: { className: styles.directionDebit, label: '↓ Uscita' },
+};
+
+/* ── Formatter ── */
+
+const dateFormatter = new Intl.DateTimeFormat('it-IT', {
+  day: '2-digit',
+  month: 'short',
+  year: 'numeric',
+});
+
+const amountFormatter = new Intl.NumberFormat('it-IT', {
+  style: 'currency',
+  currency: 'EUR',
+});
+
 /* ── Componente ── */
 
-export default function TransactionItem({ movement, onClick }: TransactionItemProps) {
+function TransactionItem({ movement }: TransactionItemProps) {
   const isCredit = movement.direction === 'credit';
   const formattedDate = dateFormatter.format(new Date(movement.executedAt));
   const formattedAmount = amountFormatter.format(movement.amount);
+  const directionCfg = DIRECTION_MAP[movement.direction];
+  const badgeClass = BADGE_CLASS_MAP[movement.category] ?? styles.badgeDefault;
+  const badgeLabel = BADGE_LABEL_MAP[movement.category] ?? movement.category;
 
   return (
-    <button
-      type="button"
-      className={styles.row}
-      onClick={() => onClick?.(movement.id)}
+    <article
+      className={styles.card}
       aria-label={`${movement.description}, ${isCredit ? 'accredito' : 'addebito'} ${formattedAmount}, ${formattedDate}`}
     >
       <span className={styles.icon}>
@@ -97,13 +130,23 @@ export default function TransactionItem({ movement, onClick }: TransactionItemPr
 
       <span className={styles.info}>
         <span className={styles.description}>{movement.description}</span>
-        <span className={styles.date}>{formattedDate}</span>
+        <span className={styles.meta}>
+          <span className={styles.date}>{formattedDate}</span>
+          <span className={`${styles.directionBadge} ${directionCfg.className}`}>
+            {directionCfg.label}
+          </span>
+          <span className={`${styles.badge} ${badgeClass}`}>
+            {badgeLabel}
+          </span>
+        </span>
       </span>
 
       <span className={`${styles.amount} ${isCredit ? styles.credit : styles.debit}`}>
         {isCredit ? '+' : '-'}
         {formattedAmount}
       </span>
-    </button>
+    </article>
   );
 }
+
+export default memo(TransactionItem);
