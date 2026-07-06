@@ -23,13 +23,21 @@
   color: var(--color-gray-700);
 }
 
-.type {
-  font-size: var(--font-size-xs);
-  font-weight: 500;
-  color: var(--color-primary);
-  background: var(--color-primary-lighter);
+.badge {
+  font-size: 0.7rem;
+  font-weight: 600;
   padding: 2px var(--space-2);
   border-radius: var(--radius-full);
+}
+
+.private {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.business {
+  background: var(--color-warning-bg);
+  color: #92400e;
 }
 
 .balance {
@@ -43,4 +51,48 @@
   font-size: var(--font-size-xs);
   font-family: var(--font-mono);
   color: var(--color-gray-400);
+  margin-bottom: var(--space-4);
+}
+
+.actions {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.refreshBtn,
+.movementsBtn {
+  flex: 1;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.refreshBtn {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  border: 1px solid transparent;
+
+  &:hover:not(:disabled) {
+    background: var(--color-primary);
+    color: var(--color-white);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.movementsBtn {
+  background: var(--color-white);
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+
+  &:hover {
+    background: var(--color-primary);
+    color: var(--color-white);
+  }
 }

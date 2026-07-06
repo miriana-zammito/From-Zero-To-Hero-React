@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import type { Account, Movement } from '@/types';
-import AccountSummaryCard from '@/features/dashboard/components/AccountSummaryCard';
-import MovementRow from '@/features/dashboard/components/MovementRow';
+import AccountBalanceCard from '@/features/dashboard/components/AccountBalanceCard/AccountBalanceCard';
+import TransactionItem from '@/features/dashboard/components/TransactionItem/TransactionItem';
 import styles from './DashboardPage.module.css';
 
 const MOCK_ACCOUNTS: Account[] = [
@@ -108,13 +108,27 @@ export default function DashboardPage() {
     console.log('Movimento selezionato:', id);
   }, []);
 
+  const handleViewTransactions = useCallback((accountId: string) => {
+    console.log('Visualizza movimenti per conto:', accountId);
+  }, []);
+
+  const handleRefreshBalance = useCallback(async (accountId: string) => {
+    console.log('Aggiornamento saldo per conto:', accountId);
+    await new Promise((r) => setTimeout(r, 1000));
+  }, []);
+
   return (
     <div className={styles.page}>
       <h1 className={styles.title}>Dashboard</h1>
 
       <section className={styles.cards}>
         {MOCK_ACCOUNTS.map((acc) => (
-          <AccountSummaryCard key={acc.id} account={acc} />
+          <AccountBalanceCard
+            key={acc.id}
+            account={acc}
+            onViewTransactions={handleViewTransactions}
+            onRefreshBalance={handleRefreshBalance}
+          />
         ))}
       </section>
 
@@ -122,7 +136,7 @@ export default function DashboardPage() {
         <h2 className={styles.sectionTitle}>Movimenti recenti</h2>
         <div className={styles.list}>
           {MOCK_MOVEMENTS.map((mov) => (
-            <MovementRow key={mov.id} movement={mov} onClick={handleMovementClick} />
+            <TransactionItem key={mov.id} movement={mov} onClick={handleMovementClick} />
           ))}
         </div>
       </section>
