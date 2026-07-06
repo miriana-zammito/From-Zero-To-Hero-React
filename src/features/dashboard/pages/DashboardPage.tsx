@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import type { Account, Movement } from '@/types';
 import AccountBalanceCard from '@/features/dashboard/components/AccountBalanceCard/AccountBalanceCard';
-import TransactionItem from '@/features/dashboard/components/TransactionItem/TransactionItem';
+import TransactionList from '@/features/dashboard/components/TransactionList/TransactionList';
 import styles from './DashboardPage.module.css';
 
 const MOCK_ACCOUNTS: Account[] = [
@@ -104,10 +104,6 @@ const MOCK_MOVEMENTS: Movement[] = [
 ];
 
 export default function DashboardPage() {
-  const handleMovementClick = useCallback((id: string) => {
-    console.log('Movimento selezionato:', id);
-  }, []);
-
   const handleViewTransactions = useCallback((accountId: string) => {
     console.log('Visualizza movimenti per conto:', accountId);
   }, []);
@@ -134,11 +130,7 @@ export default function DashboardPage() {
 
       <section className={styles.movements}>
         <h2 className={styles.sectionTitle}>Movimenti recenti</h2>
-        <div className={styles.list}>
-          {MOCK_MOVEMENTS.map((mov) => (
-            <TransactionItem key={mov.id} movement={mov} onClick={handleMovementClick} />
-          ))}
-        </div>
+        <TransactionList movements={MOCK_MOVEMENTS} />
       </section>
     </div>
   );

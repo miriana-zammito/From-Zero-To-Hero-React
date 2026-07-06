@@ -54,19 +54,22 @@ export default function AccountSummaryCard({ account }: AccountSummaryCardProps)
   const formattedBalance = BALANCE_FORMATTER.format(currentBalance);
 
   return (
-    <article className={styles.card}>
+    <article className={styles.card} aria-label={`Riepilogo conto ${account.label}`}>
       <div className={styles.top}>
         <h3 className={styles.name}>{account.label}</h3>
         <span
           className={`${styles.badge} ${account.accountType === 'BUSINESS' ? styles.business : styles.private}`}
+          aria-label={`Tipo conto ${account.accountType}`}
         >
           {account.accountType}
         </span>
       </div>
 
-      <p className={styles.balance}>{formattedBalance}</p>
+      <p className={styles.balance} aria-label={`Saldo ${formattedBalance}`}>
+        {formattedBalance}
+      </p>
 
-      <p className={styles.iban} title={account.iban}>
+      <p className={styles.iban} title={account.iban} aria-label={`IBAN ${account.iban}`}>
         {truncateIban(account.iban)}
       </p>
 
@@ -75,6 +78,7 @@ export default function AccountSummaryCard({ account }: AccountSummaryCardProps)
         className={styles.refreshBtn}
         onClick={handleRefresh}
         disabled={isRefreshing}
+        aria-label={`Aggiorna saldo conto ${account.label}`}
       >
         {isRefreshing ? 'Aggiornamento...' : '\u{1F504} Aggiorna'}
       </button>
