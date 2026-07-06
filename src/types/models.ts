@@ -2,20 +2,27 @@
 
 export interface Account {
   id: string;
-  name: string;
-  type: "PRIVATE" | "BUSINESS";
-  balance: number;
   iban: string;
+  label: string;
+  balance: number;
+  currency: string;
+  type: "current" | "savings";
+  accountType: "PRIVATE" | "BUSINESS";
+  status: "active" | "inactive";
+  openedAt: string;
 }
 
 export interface Movement {
   id: string;
   accountId: string;
-  date: string;
-  description: string;
   amount: number;
-  type: "CREDIT" | "DEBIT";
+  currency: string;
+  direction: "credit" | "debit";
+  description: string;
   category: string;
+  status: "completed" | "pending";
+  executedAt: string;
+  createdAt: string;
 }
 
 export interface Investment {
