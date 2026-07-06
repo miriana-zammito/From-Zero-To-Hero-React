@@ -4,4 +4,5 @@ export type {
   Investment,
   Branch,
   User,
+  Notification,
 } from "./models";
