@@ -1,0 +1,218 @@
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  transition: box-shadow var(--transition-fast),
+              background-color var(--transition-base),
+              border-color var(--transition-base);
+
+  &:hover {
+    box-shadow: var(--shadow-md);
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-3);
+}
+
+.label {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-full);
+}
+
+.private {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.business {
+  background: var(--color-warning-bg);
+  color: var(--color-warning);
+}
+
+.balance {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--space-1);
+}
+
+.iban {
+  font-size: var(--font-size-xs);
+  font-family: var(--font-mono);
+  color: var(--color-muted);
+  margin-bottom: var(--space-4);
+}
+
+.actions {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.refreshBtn {
+  flex: 1;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  border: 1px solid transparent;
+
+  &:hover:not(:disabled) {
+    background: var(--color-primary);
+    color: var(--color-white);
+    border-color: var(--color-primary);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.movementsBtn {
+  flex: 1;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+  background: transparent;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+
+  &:hover {
+    background: var(--color-primary);
+    color: var(--color-white);
+  }
+}
+
+/* ── Movimenti inline ── */
+
+.movementsList {
+  margin-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-3);
+}
+
+.movLoading {
+  font-size: var(--font-size-sm);
+  color: var(--color-muted);
+  margin: 0;
+}
+
+.movError {
+  font-size: var(--font-size-sm);
+  color: var(--color-danger, #c00);
+  margin: 0;
+}
+
+.movRetryBtn {
+  margin-left: var(--space-2);
+  padding: 2px 8px;
+  font-size: var(--font-size-xs);
+  border: 1px solid var(--color-danger, #c00);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-danger, #c00);
+  cursor: pointer;
+}
+
+.movRetryBtn:hover {
+  background: var(--color-danger, #c00);
+  color: #fff;
+}
+
+.movEmpty {
+  font-size: var(--font-size-sm);
+  color: var(--color-muted);
+  margin: 0;
+  text-align: center;
+}
+
+.movList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.movItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--font-size-sm);
+  padding: var(--space-1) 0;
+}
+
+.movDesc {
+  color: var(--color-text);
+  flex: 1;
+  margin-right: var(--space-2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.movCredit {
+  color: var(--color-success, #2a7);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.movDebit {
+  color: var(--color-danger, #c00);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ── Lista semplice (inline card) ── */
+
+.movListSimple {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.movItemSimple {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--font-size-sm);
+  padding: var(--space-1) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.movItemSimple:last-child {
+  border-bottom: none;
+}
+
+.movDescSimple {
+  color: var(--color-text);
+  flex: 1;
+  margin-right: var(--space-2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

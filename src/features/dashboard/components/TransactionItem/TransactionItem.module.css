@@ -1,0 +1,148 @@
+/* ── Card ── */
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: box-shadow var(--transition-fast), transform 0.15s ease,
+              background-color var(--transition-base), border-color var(--transition-base);
+  cursor: default;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+  border-color: var(--color-primary);
+}
+
+/* ── Icona circolare ── */
+
+.icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-bg-secondary);
+  color: var(--color-text-secondary);
+}
+
+/* ── Info centrale ── */
+
+.info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.description {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.date {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+}
+
+/* ── Direction badge ── */
+
+.directionBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.directionCredit {
+  background: var(--color-success-bg);
+  color: var(--color-success);
+}
+
+.directionDebit {
+  background: var(--color-danger-bg);
+  color: var(--color-danger);
+}
+
+/* ── Importo ── */
+
+.amount {
+  flex-shrink: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.credit {
+  color: var(--color-success);
+}
+
+.debit {
+  color: var(--color-danger);
+}
+
+/* ── Badge categoria (theme-aware palette) ── */
+
+.badge {
+  display: inline-block;
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.badgeDefault {
+  background: var(--color-bg-secondary);
+  color: var(--color-text-secondary);
+}
+
+.badgeSalary {
+  background: var(--color-success-bg);
+  color: var(--color-success);
+}
+
+.badgeShopping {
+  background: var(--color-warning-bg);
+  color: var(--color-warning);
+}
+
+.badgeFood {
+  background: var(--color-warning-bg);
+  color: var(--color-warning);
+  opacity: 0.85;
+}
+
+.badgeUtilities {
+  background: var(--color-info-bg);
+  color: var(--color-info);
+}
+
+.badgeTransfer {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}

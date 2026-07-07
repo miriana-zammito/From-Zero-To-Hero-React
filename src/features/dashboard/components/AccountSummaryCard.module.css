@@ -1,0 +1,80 @@
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 20px;
+  transition: box-shadow var(--transition-fast),
+              background-color var(--transition-base),
+              border-color var(--transition-base);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.private {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.business {
+  background: var(--color-warning-bg);
+  color: var(--color-warning);
+}
+
+.balance {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 4px;
+}
+
+.iban {
+  font-size: 0.75rem;
+  font-family: "SF Mono", "Fira Code", Consolas, monospace;
+  color: var(--color-muted);
+  margin-bottom: 12px;
+}
+
+.refreshBtn {
+  width: 100%;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  border: 1px solid transparent;
+  transition: background var(--transition-fast), color var(--transition-fast);
+
+  &:hover:not(:disabled) {
+    background: var(--color-primary);
+    color: var(--color-white);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
