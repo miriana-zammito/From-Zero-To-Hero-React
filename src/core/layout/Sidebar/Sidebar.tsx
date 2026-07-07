@@ -1,11 +1,12 @@
+import { Link } from "react-router-dom";
 import styles from "./Sidebar.module.css";
 
 const NAV_ITEMS = [
-  { label: "Dashboard", href: "/" },
-  { label: "Conti", href: "/accounts" },
-  { label: "Investimenti", href: "/investments" },
-  { label: "Polizze", href: "/policies" },
-  { label: "Admin", href: "/admin" },
+  { label: "Dashboard", to: "/" },
+  { label: "Conti", to: "/accounts" },
+  { label: "Investimenti", to: "/investments" },
+  { label: "Polizze", to: "/policies" },
+  { label: "Admin", to: "/admin" },
 ];
 
 export default function Sidebar() {
@@ -13,9 +14,9 @@ export default function Sidebar() {
     <aside className={styles.sidebar}>
       <nav className={styles.nav}>
         {NAV_ITEMS.map((item) => (
-          <a key={item.href} href={item.href} className={styles.link}>
+          <Link key={item.to} to={item.to} className={styles.link}>
             {item.label}
-          </a>
+          </Link>
         ))}
       </nav>
     </aside>

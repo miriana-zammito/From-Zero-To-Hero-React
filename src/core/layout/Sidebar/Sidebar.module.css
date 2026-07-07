@@ -4,10 +4,11 @@
   left: 0;
   width: 256px;
   height: calc(100vh - 64px);
-  background: #ffffff;
-  border-right: 1px solid #e0e3e8;
+  background: var(--color-surface);
+  border-right: 1px solid var(--color-border);
   padding: 16px 0;
   overflow-y: auto;
+  transition: background-color var(--transition-base), border-color var(--transition-base);
 }
 
 .nav {
@@ -21,12 +22,11 @@
   padding: 10px 24px;
   font-size: 0.875rem;
   font-weight: 500;
-  color: #4b5563;
+  color: var(--color-text-secondary);
   text-decoration: none;
-  transition: background 150ms ease, color 150ms ease;
 
   &:hover {
-    background: #f0f4fa;
-    color: #00317d;
+    background: var(--color-hover);
+    color: var(--color-primary);
   }
 }
