@@ -1,26 +1,26 @@
-import { lazy, Suspense } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { ErrorBoundary } from "react-error-boundary";
-import GlobalErrorBoundary from "@/shared/components/GlobalErrorBoundary";
-import AppShell from "@/core/layout/AppShell/AppShell";
-import { AuthProvider, ThemeProvider } from "@/store";
-import { NotificationProvider } from "@/features/notifications";
-import ErrorFallback from "@/shared/components/ErrorFallback";
+import { lazy, Suspense } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { ErrorBoundary } from 'react-error-boundary';
+import GlobalErrorBoundary from '@/shared/components/GlobalErrorBoundary';
+import AppShell from '@/core/layout/AppShell/AppShell';
+import { AuthProvider, ThemeProvider } from '@/store';
+import { NotificationProvider } from '@/features/notifications';
+import ErrorFallback from '@/shared/components/ErrorFallback';
 
 const DashboardPage = lazy(() =>
-  import("@/features/dashboard/pages/DashboardPage").then((m) => ({
+  import('@/features/dashboard/pages/DashboardPage').then((m) => ({
     default: m.default,
   }))
 );
 
 const InvestmentsPage = lazy(() =>
-  import("@/features/investments/pages/InvestmentsPage").then((m) => ({
+  import('@/features/investments/pages/InvestmentsPage').then((m) => ({
     default: m.default,
   }))
 );
 
 const InsurancePage = lazy(() =>
-  import("@/features/insurance/pages/InsurancePage").then((m) => ({
+  import('@/features/insurance/pages/InsurancePage').then((m) => ({
     default: m.default,
   }))
 );
@@ -30,9 +30,9 @@ function LoadingFallback() {
     <div
       style={{
         padding: 48,
-        textAlign: "center",
-        color: "var(--color-text-secondary)",
-        fontFamily: "var(--font-sans, sans-serif)",
+        textAlign: 'center',
+        color: 'var(--color-text-secondary)',
+        fontFamily: 'var(--font-sans, sans-serif)',
       }}
     >
       Caricamento...
@@ -49,9 +49,7 @@ export default function App() {
             <NotificationProvider>
               <AppShell>
                 <ErrorBoundary
-                  FallbackComponent={(props) => (
-                    <ErrorFallback {...props} title="Errore pagina" />
-                  )}
+                  FallbackComponent={(props) => <ErrorFallback {...props} title="Errore pagina" />}
                 >
                   <Suspense fallback={<LoadingFallback />}>
                     <Routes>

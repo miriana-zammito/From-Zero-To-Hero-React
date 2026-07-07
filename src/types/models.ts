@@ -1,28 +1,22 @@
 // === Entità principali della LipariBank Dashboard ===
+// I tipi rispecchiano la struttura del db.json (json-server)
 
 export interface Account {
   id: string;
   iban: string;
-  label: string;
+  name: string;
   balance: number;
-  currency: string;
-  type: "current" | "savings";
-  accountType: "PRIVATE" | "BUSINESS";
-  status: "active" | "inactive";
-  openedAt: string;
+  type: "PRIVATE" | "BUSINESS";
 }
 
 export interface Movement {
   id: string;
   accountId: string;
   amount: number;
-  currency: string;
-  direction: "credit" | "debit";
+  date: string;
   description: string;
+  type: "CREDIT" | "DEBIT";
   category: string;
-  status: "completed" | "pending";
-  executedAt: string;
-  createdAt: string;
 }
 
 export interface Investment {

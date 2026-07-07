@@ -61,8 +61,7 @@
   gap: var(--space-2);
 }
 
-.refreshBtn,
-.movementsBtn {
+.refreshBtn {
   flex: 1;
   padding: var(--space-2) var(--space-3);
   border-radius: var(--radius-md);
@@ -70,9 +69,6 @@
   font-weight: 500;
   cursor: pointer;
   transition: background var(--transition-fast), border-color var(--transition-fast);
-}
-
-.refreshBtn {
   background: var(--color-primary-light);
   color: var(--color-primary);
   border: 1px solid transparent;
@@ -90,6 +86,13 @@
 }
 
 .movementsBtn {
+  flex: 1;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
   background: transparent;
   color: var(--color-primary);
   border: 1px solid var(--color-primary);
@@ -98,4 +101,118 @@
     background: var(--color-primary);
     color: var(--color-white);
   }
+}
+
+/* ── Movimenti inline ── */
+
+.movementsList {
+  margin-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-3);
+}
+
+.movLoading {
+  font-size: var(--font-size-sm);
+  color: var(--color-muted);
+  margin: 0;
+}
+
+.movError {
+  font-size: var(--font-size-sm);
+  color: var(--color-danger, #c00);
+  margin: 0;
+}
+
+.movRetryBtn {
+  margin-left: var(--space-2);
+  padding: 2px 8px;
+  font-size: var(--font-size-xs);
+  border: 1px solid var(--color-danger, #c00);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-danger, #c00);
+  cursor: pointer;
+}
+
+.movRetryBtn:hover {
+  background: var(--color-danger, #c00);
+  color: #fff;
+}
+
+.movEmpty {
+  font-size: var(--font-size-sm);
+  color: var(--color-muted);
+  margin: 0;
+  text-align: center;
+}
+
+.movList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.movItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--font-size-sm);
+  padding: var(--space-1) 0;
+}
+
+.movDesc {
+  color: var(--color-text);
+  flex: 1;
+  margin-right: var(--space-2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.movCredit {
+  color: var(--color-success, #2a7);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.movDebit {
+  color: var(--color-danger, #c00);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ── Lista semplice (inline card) ── */
+
+.movListSimple {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.movItemSimple {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--font-size-sm);
+  padding: var(--space-1) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.movItemSimple:last-child {
+  border-bottom: none;
+}
+
+.movDescSimple {
+  color: var(--color-text);
+  flex: 1;
+  margin-right: var(--space-2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

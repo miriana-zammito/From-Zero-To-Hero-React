@@ -5,7 +5,7 @@ import type { Movement } from '@/types';
 
 export interface TransactionFiltersState {
   searchText: string;
-  type: 'all' | 'credit' | 'debit';
+  type: 'all' | 'CREDIT' | 'DEBIT';
   dateRange: { start: string; end: string } | null;
   amountRange: { min: number; max: number } | null;
   sortBy: 'date' | 'amount' | 'description';
@@ -139,11 +139,11 @@ export function applyFilters(
       }
 
       /* direction */
-      if (filters.type !== 'all' && m.direction !== filters.type) return false;
+      if (filters.type !== 'all' && m.type !== filters.type) return false;
 
       /* dateRange */
       if (filters.dateRange) {
-        const t = new Date(m.executedAt).getTime();
+        const t = new Date(m.date).getTime();
         const start = filters.dateRange.start
           ? new Date(filters.dateRange.start).getTime()
           : -Infinity;
@@ -171,7 +171,7 @@ export function applyFilters(
           return a.description.localeCompare(b.description) * dir;
         case 'date':
         default:
-          return (new Date(a.executedAt).getTime() - new Date(b.executedAt).getTime()) * dir;
+          return (new Date(a.date).getTime() - new Date(b.date).getTime()) * dir;
       }
     });
 }

@@ -6,7 +6,7 @@ interface TransactionItemProps {
   movement: Movement;
 }
 
-/* ── Icone SVG per categoria (restaurate) ── */
+/* ── Icone SVG per categoria ── */
 
 function CategoryIcon({ category }: { category: string }) {
   const props = {
@@ -20,6 +20,8 @@ function CategoryIcon({ category }: { category: string }) {
   };
 
   switch (category) {
+    case 'Stipendio':
+    case 'Lavoro':
     case 'salary':
       return (
         <svg {...props}>
@@ -27,6 +29,7 @@ function CategoryIcon({ category }: { category: string }) {
           <circle cx="12" cy="16" r="2" />
         </svg>
       );
+    case 'Acquisto':
     case 'shopping':
       return (
         <svg {...props}>
@@ -35,6 +38,7 @@ function CategoryIcon({ category }: { category: string }) {
           <path d="M16 10a4 4 0 01-8 0" />
         </svg>
       );
+    case 'Cibo':
     case 'food':
       return (
         <svg {...props}>
@@ -42,12 +46,14 @@ function CategoryIcon({ category }: { category: string }) {
           <path d="M15 8V3M19 8V5" />
         </svg>
       );
+    case 'Utenze':
     case 'utilities':
       return (
         <svg {...props}>
           <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
         </svg>
       );
+    case 'Bonifico':
     case 'transfer':
       return (
         <svg {...props}>
@@ -60,31 +66,50 @@ function CategoryIcon({ category }: { category: string }) {
     default:
       return (
         <svg {...props}>
-          <path d="M4 2h16v20l-8-4-8 4V2z" />
+          <circle cx="12" cy="12" r="2" />
+          <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
         </svg>
       );
   }
 }
 
-/* ── Component map per badge categoria ── */
+/* ── Component map per badge categoria (italiano) ── */
 
 const BADGE_CLASS_MAP: Record<string, string> = {
+  Stipendio: styles.badgeSalary,
+  Lavoro: styles.badgeSalary,
   salary: styles.badgeSalary,
+  Acquisto: styles.badgeShopping,
   shopping: styles.badgeShopping,
+  Cibo: styles.badgeFood,
   food: styles.badgeFood,
+  Utenze: styles.badgeUtilities,
   utilities: styles.badgeUtilities,
+  Casa: styles.badgeDefault,
+  Incassi: styles.badgeTransfer,
+  Fornitori: styles.badgeTransfer,
+  Bonifico: styles.badgeTransfer,
   transfer: styles.badgeTransfer,
 };
 
 const BADGE_LABEL_MAP: Record<string, string> = {
+  Stipendio: 'Stipendio',
+  Lavoro: 'Lavoro',
   salary: 'Stipendio',
+  Acquisto: 'Acquisto',
   shopping: 'Acquisto',
+  Cibo: 'Cibo',
   food: 'Cibo',
+  Utenze: 'Utenze',
   utilities: 'Utenze',
+  Casa: 'Casa',
+  Incassi: 'Incasso',
+  Fornitori: 'Fornitore',
+  Bonifico: 'Bonifico',
   transfer: 'Bonifico',
 };
 
-/* ── Component map per direzione ── */
+/* ── Component map per tipo movimento ── */
 
 interface DirectionBadgeConfig {
   className: string;
@@ -92,8 +117,8 @@ interface DirectionBadgeConfig {
 }
 
 const DIRECTION_MAP: Record<string, DirectionBadgeConfig> = {
-  credit: { className: styles.directionCredit, label: '↑ Entrata' },
-  debit: { className: styles.directionDebit, label: '↓ Uscita' },
+  CREDIT: { className: styles.directionCredit, label: '↑ Entrata' },
+  DEBIT: { className: styles.directionDebit, label: '↓ Uscita' },
 };
 
 /* ── Formatter ── */
@@ -112,10 +137,12 @@ const amountFormatter = new Intl.NumberFormat('it-IT', {
 /* ── Componente ── */
 
 function TransactionItem({ movement }: TransactionItemProps) {
-  const isCredit = movement.direction === 'credit';
-  const formattedDate = dateFormatter.format(new Date(movement.executedAt));
-  const formattedAmount = amountFormatter.format(movement.amount);
-  const directionCfg = DIRECTION_MAP[movement.direction];
+  const isCredit = movement.type === 'CREDIT';
+  const formattedDate = movement.date
+    ? dateFormatter.format(new Date(movement.date))
+    : '—';
+  const formattedAmount = amountFormatter.format(Math.abs(movement.amount));
+  const directionCfg = DIRECTION_MAP[movement.type] ?? { className: '', label: '' };
   const badgeClass = BADGE_CLASS_MAP[movement.category] ?? styles.badgeDefault;
   const badgeLabel = BADGE_LABEL_MAP[movement.category] ?? movement.category;
 

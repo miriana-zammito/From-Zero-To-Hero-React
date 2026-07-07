@@ -19,9 +19,11 @@ const amountFormatter = new Intl.NumberFormat("it-IT", {
 });
 
 export default function MovementRow({ movement, onClick }: MovementRowProps) {
-  const isCredit = movement.direction === "credit";
-  const formattedDate = dateFormatter.format(new Date(movement.executedAt));
-  const formattedAmount = amountFormatter.format(movement.amount);
+  const isCredit = movement.type === "CREDIT";
+  const formattedDate = movement.date
+    ? dateFormatter.format(new Date(movement.date))
+    : "—";
+  const formattedAmount = amountFormatter.format(Math.abs(movement.amount));
 
   const handleClick = useCallback(() => {
     onClick(movement.id);
