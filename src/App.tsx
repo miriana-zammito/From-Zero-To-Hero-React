@@ -25,6 +25,12 @@ const InsurancePage = lazy(() =>
   }))
 );
 
+const NewInsurancePage = lazy(() =>
+  import('@/features/insurance/pages/NewInsurancePage').then((m) => ({
+    default: m.default,
+  }))
+);
+
 function LoadingFallback() {
   return (
     <div
@@ -56,6 +62,7 @@ export default function App() {
                       <Route path="/" element={<DashboardPage />} />
                       <Route path="/investments" element={<InvestmentsPage />} />
                       <Route path="/policies" element={<InsurancePage />} />
+                      <Route path="/insurance" element={<NewInsurancePage />} />
                     </Routes>
                   </Suspense>
                 </ErrorBoundary>

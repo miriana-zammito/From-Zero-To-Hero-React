@@ -6,6 +6,7 @@ const NAV_ITEMS = [
   { label: "Conti", to: "/accounts" },
   { label: "Investimenti", to: "/investments" },
   { label: "Polizze", to: "/policies" },
+  { label: "Insurance", to: "/insurance" },
   { label: "Admin", to: "/admin" },
 ];
 

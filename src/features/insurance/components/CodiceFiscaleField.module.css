@@ -1,0 +1,62 @@
+/* === Codice Fiscale — input + stato async === */
+
+/* Contenitore per posizionare icona dentro l'input */
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Input — padding-right extra per non sovrapporsi all'icona */
+.input {
+  padding-right: 2.25rem;
+}
+
+/* Icona di stato (spinner / check) — assoluta dentro inputWrapper */
+.statusIcon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+}
+
+/* Spinner animato */
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-primary);
+  border-radius: var(--radius-full);
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Checkmark verde */
+.check {
+  color: var(--color-success);
+  font-weight: 700;
+  font-size: var(--font-size-lg);
+  line-height: 1;
+}
+
+/* Bordo verde per input valido */
+.inputSuccess {
+  border-color: var(--color-success);
+}
+
+.inputSuccess:focus {
+  outline: none;
+  border-color: var(--color-success);
+  box-shadow: 0 0 0 3px var(--color-success-bg);
+}
