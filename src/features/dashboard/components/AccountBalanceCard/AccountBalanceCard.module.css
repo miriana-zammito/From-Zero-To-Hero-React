@@ -1,9 +1,11 @@
 .card {
-  background: var(--color-white);
-  border: 1px solid var(--color-gray-200);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   padding: var(--space-5);
-  transition: box-shadow var(--transition-fast);
+  transition: box-shadow var(--transition-fast),
+              background-color var(--transition-base),
+              border-color var(--transition-base);
 
   &:hover {
     box-shadow: var(--shadow-md);
@@ -20,7 +22,7 @@
 .label {
   font-size: var(--font-size-sm);
   font-weight: 600;
-  color: var(--color-gray-700);
+  color: var(--color-text-secondary);
 }
 
 .badge {
@@ -37,20 +39,20 @@
 
 .business {
   background: var(--color-warning-bg);
-  color: #92400e;
+  color: var(--color-warning);
 }
 
 .balance {
   font-size: var(--font-size-2xl);
   font-weight: 700;
-  color: var(--color-gray-900);
+  color: var(--color-text);
   margin-bottom: var(--space-1);
 }
 
 .iban {
   font-size: var(--font-size-xs);
   font-family: var(--font-mono);
-  color: var(--color-gray-400);
+  color: var(--color-muted);
   margin-bottom: var(--space-4);
 }
 
@@ -78,16 +80,17 @@
   &:hover:not(:disabled) {
     background: var(--color-primary);
     color: var(--color-white);
+    border-color: var(--color-primary);
   }
 
   &:disabled {
-    opacity: 0.6;
+    opacity: 0.5;
     cursor: not-allowed;
   }
 }
 
 .movementsBtn {
-  background: var(--color-white);
+  background: transparent;
   color: var(--color-primary);
   border: 1px solid var(--color-primary);
 

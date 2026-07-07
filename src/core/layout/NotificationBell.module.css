@@ -10,11 +10,11 @@
   width: 36px;
   height: 36px;
   border: none;
-  border-radius: var(--radius-full, 9999px);
+  border-radius: var(--radius-full);
   background: transparent;
-  color: #ffffff;
+  color: var(--color-white);
   cursor: pointer;
-  transition: background 150ms ease;
+  transition: background var(--transition-fast);
 
   &:hover {
     background: rgba(255, 255, 255, 0.15);
@@ -29,8 +29,8 @@
   height: 16px;
   padding: 0 5px;
   border-radius: 999px;
-  background: #dc2626;
-  color: #ffffff;
+  background: var(--color-danger);
+  color: var(--color-white);
   font-size: 0.65rem;
   font-weight: 700;
   line-height: 16px;
@@ -44,9 +44,10 @@
   width: 320px;
   max-height: 360px;
   overflow-y: auto;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
   z-index: 1100;
 }
 
@@ -54,35 +55,34 @@
   padding: 12px 16px 8px;
   font-size: 0.8rem;
   font-weight: 700;
-  color: #374151;
+  color: var(--color-text);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  border-bottom: 1px solid #f0f2f5;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .empty {
   padding: 24px 16px;
   text-align: center;
   font-size: 0.875rem;
-  color: #9ca3af;
+  color: var(--color-muted);
 }
 
 .item {
   padding: 12px 16px;
   cursor: pointer;
-  transition: background 150ms ease;
 
   &:hover {
-    background: #f8f9fb;
+    background: var(--color-hover);
   }
 
   & + & {
-    border-top: 1px solid #f0f2f5;
+    border-top: 1px solid var(--color-border);
   }
 }
 
 .itemUnread {
-  background: #f0f4fa;
+  background: var(--color-primary-lighter);
 }
 
 .itemRead {
@@ -92,17 +92,17 @@
 .itemTitle {
   font-size: 0.875rem;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--color-text);
   margin-bottom: 2px;
 }
 
 .itemMessage {
   font-size: 0.8rem;
-  color: #6b7280;
+  color: var(--color-text-secondary);
   margin-bottom: 4px;
 }
 
 .itemTime {
   font-size: 0.7rem;
-  color: #9ca3af;
+  color: var(--color-muted);
 }

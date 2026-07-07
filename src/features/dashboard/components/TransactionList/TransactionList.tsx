@@ -1,4 +1,5 @@
-import { useReducer, useMemo, useRef } from 'react';
+import { useReducer, useMemo, useRef, useCallback } from 'react';
+import { useErrorBoundary } from 'react-error-boundary';
 import type { Movement } from '@/types';
 import TransactionItem from '@/features/dashboard/components/TransactionItem/TransactionItem';
 import FilterPanel from '@/features/dashboard/components/FilterPanel/FilterPanel';
@@ -73,6 +74,16 @@ interface TransactionListProps {
 export default function TransactionList({ movements, isLoading = false }: TransactionListProps) {
   const [filters, dispatch] = useReducer(filtersReducer, INITIAL_FILTERS);
   const searchRef = useRef<HTMLInputElement | null>(null);
+  const { showBoundary } = useErrorBoundary();
+
+  /* useErrorBoundary demo: catch async/event-handler errors */
+  const handleCrash = useCallback(() => {
+    try {
+      throw new Error("Demo crash from TransactionList");
+    } catch (err) {
+      showBoundary(err);
+    }
+  }, [showBoundary]);
 
   /* ── Early return: skeleton loader ── */
   if (isLoading) {
@@ -147,6 +158,14 @@ export default function TransactionList({ movements, isLoading = false }: Transa
 
   return (
     <div className={styles.wrapper}>
+      <button
+        onClick={handleCrash}
+        style={{ marginBottom: 8, fontSize: 12, opacity: 0.5 }}
+        title="useErrorBoundary demo"
+      >
+        💥 Crash (demo)
+      </button>
+
       <FilterPanel
         filters={filters}
         dispatch={dispatch}

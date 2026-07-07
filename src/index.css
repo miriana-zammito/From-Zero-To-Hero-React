@@ -9,6 +9,7 @@
 
   /* Neutrals */
   --color-white: #ffffff;
+  --color-black: #000000;
   --color-gray-50: #f8f9fb;
   --color-gray-100: #f0f2f5;
   --color-gray-200: #e0e3e8;
@@ -29,6 +30,12 @@
   --color-danger-bg: #fef2f2;
   --color-info: #0284c7;
   --color-info-bg: #eff6ff;
+
+  /* Theme compound tokens (light default) */
+  --color-surface: #ffffff;
+  --color-muted: #6b7280;
+  --color-hover: #f0f2f5;
+  --color-focus: #005fcc;
 
   /* Typography */
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
@@ -87,11 +94,13 @@ html {
 body {
   font-family: var(--font-sans);
   font-size: var(--font-size-base);
-  color: var(--color-gray-800);
-  background-color: var(--color-gray-50);
+  color: var(--color-text, var(--color-gray-800));
+  background-color: var(--color-bg, var(--color-gray-50));
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--transition-base),
+              color var(--transition-base);
 }
 
 #root {
@@ -102,6 +111,52 @@ body {
 :focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
+}
+
+/* === Temi === */
+
+.theme-light {
+  --color-bg: #f8f9fb;
+  --color-bg-secondary: #f0f2f5;
+  --color-text: #1f2937;
+  --color-text-secondary: #6b7280;
+  --color-border: #e0e3e8;
+  --color-surface: #ffffff;
+  --color-muted: #9ca3af;
+  --color-hover: #f0f2f5;
+  --color-focus: #005fcc;
+  --color-header-bg: var(--color-primary);
+}
+
+.theme-dark {
+  --color-bg: #0f172a;
+  --color-bg-secondary: #1e293b;
+  --color-text: #f1f5f9;
+  --color-text-secondary: #94a3b8;
+  --color-border: #334155;
+  --color-surface: #1a2332;
+  --color-muted: #64748b;
+  --color-hover: #2a3a4e;
+  --color-focus: #60a5fa;
+  --color-header-bg: #0b1120;
+
+  --color-primary: #60a5fa;
+  --color-primary-hover: #93bbfd;
+  --color-primary-light: #1e3a5f;
+  --color-primary-lighter: #172554;
+
+  --color-success: #4ade80;
+  --color-success-bg: #14532d;
+  --color-warning: #fbbf24;
+  --color-warning-bg: #713f12;
+  --color-danger: #fb7185;
+  --color-danger-bg: #7f1d2d;
+  --color-info: #38bdf8;
+  --color-info-bg: #0c4a6e;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
 }
 
 /* Utilities */

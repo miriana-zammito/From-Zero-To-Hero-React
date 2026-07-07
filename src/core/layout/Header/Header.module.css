@@ -8,9 +8,10 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 24px;
-  background: #00317d;
-  color: #ffffff;
+  background: var(--color-header-bg, var(--color-primary));
+  color: var(--color-white);
   z-index: 1000;
+  transition: background-color var(--transition-base);
 }
 
 .logo {
@@ -27,4 +28,37 @@
   display: flex;
   align-items: center;
   gap: 12px;
+}
+
+.themeBtn {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+  border-radius: var(--radius-sm);
+  transition: opacity var(--transition-fast);
+}
+
+.themeBtn:hover {
+  opacity: 0.7;
+}
+
+.loginBtn,
+.logoutBtn {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--color-white);
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.loginBtn:hover,
+.logoutBtn:hover {
+  background: rgba(255, 255, 255, 0.25);
 }

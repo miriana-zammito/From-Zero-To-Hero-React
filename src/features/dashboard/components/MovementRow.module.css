@@ -5,18 +5,18 @@
   width: 100%;
   padding: 16px 20px;
   border: none;
-  border-bottom: 1px solid #f0f2f5;
-  background: #ffffff;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface);
   cursor: pointer;
   text-align: left;
-  transition: background 150ms ease;
+  transition: background var(--transition-fast);
 
   &:last-child {
     border-bottom: none;
   }
 
   &:hover {
-    background: #f8f9fb;
+    background: var(--color-hover);
   }
 }
 
@@ -29,12 +29,12 @@
 .description {
   font-size: 0.875rem;
   font-weight: 500;
-  color: #1f2937;
+  color: var(--color-text);
 }
 
 .date {
   font-size: 0.75rem;
-  color: #9ca3af;
+  color: var(--color-text-secondary);
 }
 
 .right {
@@ -51,11 +51,11 @@
 }
 
 .credit {
-  color: #059669;
+  color: var(--color-success);
 }
 
 .debit {
-  color: #dc2626;
+  color: var(--color-danger);
 }
 
 .category {
@@ -63,8 +63,8 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: #6b7280;
-  background: #f0f2f5;
+  color: var(--color-text-secondary);
+  background: var(--color-bg-secondary);
   padding: 2px 8px;
   border-radius: 999px;
 }

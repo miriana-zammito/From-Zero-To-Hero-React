@@ -1,13 +1,15 @@
 .card {
-  background: #ffffff;
-  border: 1px solid #e0e3e8;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 12px;
   padding: 20px;
-  transition: box-shadow 150ms ease;
+  transition: box-shadow var(--transition-fast),
+              background-color var(--transition-base),
+              border-color var(--transition-base);
 }
 
 .card:hover {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-md);
 }
 
 .top {
@@ -20,7 +22,7 @@
 .name {
   font-size: 0.875rem;
   font-weight: 600;
-  color: #374151;
+  color: var(--color-text);
 }
 
 .badge {
@@ -31,26 +33,26 @@
 }
 
 .private {
-  background: #e6edf7;
-  color: #00317d;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
 }
 
 .business {
-  background: #fef3c7;
-  color: #92400e;
+  background: var(--color-warning-bg);
+  color: var(--color-warning);
 }
 
 .balance {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #111827;
+  color: var(--color-text);
   margin-bottom: 4px;
 }
 
 .iban {
   font-size: 0.75rem;
   font-family: "SF Mono", "Fira Code", Consolas, monospace;
-  color: #9ca3af;
+  color: var(--color-muted);
   margin-bottom: 12px;
 }
 
@@ -61,14 +63,14 @@
   font-size: 0.875rem;
   font-weight: 500;
   cursor: pointer;
-  background: #e6edf7;
-  color: #00317d;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
   border: 1px solid transparent;
-  transition: background 150ms ease, color 150ms ease;
+  transition: background var(--transition-fast), color var(--transition-fast);
 
   &:hover:not(:disabled) {
-    background: #00317d;
-    color: #ffffff;
+    background: var(--color-primary);
+    color: var(--color-white);
   }
 
   &:disabled {

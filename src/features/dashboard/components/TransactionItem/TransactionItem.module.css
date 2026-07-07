@@ -5,17 +5,19 @@
   align-items: center;
   gap: 1rem;
   padding: 1rem 1.25rem;
-  background: var(--color-white, #fff);
-  border: 1px solid var(--color-gray-100, #eaeaea);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 12px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
-  transition: box-shadow 0.2s ease, transform 0.15s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: box-shadow var(--transition-fast), transform 0.15s ease,
+              background-color var(--transition-base), border-color var(--transition-base);
   cursor: default;
 }
 
 .card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--shadow-md);
   transform: translateY(-1px);
+  border-color: var(--color-primary);
 }
 
 /* ── Icona circolare ── */
@@ -28,8 +30,8 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: var(--color-gray-100, #f0f0f0);
-  color: var(--color-gray-600, #666);
+  background: var(--color-bg-secondary);
+  color: var(--color-text-secondary);
 }
 
 /* ── Info centrale ── */
@@ -45,7 +47,7 @@
 .description {
   font-size: 0.9rem;
   font-weight: 500;
-  color: var(--color-gray-800, #222);
+  color: var(--color-text);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -59,10 +61,10 @@
 
 .date {
   font-size: 0.75rem;
-  color: var(--color-gray-400, #999);
+  color: var(--color-muted);
 }
 
-/* ── Direction badge (component map) ── */
+/* ── Direction badge ── */
 
 .directionBadge {
   display: inline-flex;
@@ -76,13 +78,13 @@
 }
 
 .directionCredit {
-  background: #e6f7e6;
-  color: #1a7d1a;
+  background: var(--color-success-bg);
+  color: var(--color-success);
 }
 
 .directionDebit {
-  background: #ffe6e6;
-  color: #cc0000;
+  background: var(--color-danger-bg);
+  color: var(--color-danger);
 }
 
 /* ── Importo ── */
@@ -96,14 +98,14 @@
 }
 
 .credit {
-  color: var(--color-success, #1a7d1a);
+  color: var(--color-success);
 }
 
 .debit {
-  color: var(--color-danger, #cc0000);
+  color: var(--color-danger);
 }
 
-/* ── Badge categoria ── */
+/* ── Badge categoria (theme-aware palette) ── */
 
 .badge {
   display: inline-block;
@@ -115,31 +117,32 @@
 }
 
 .badgeDefault {
-  background: var(--color-gray-100, #f0f0f0);
-  color: var(--color-gray-600, #666);
+  background: var(--color-bg-secondary);
+  color: var(--color-text-secondary);
 }
 
 .badgeSalary {
-  background: #e6f7e6;
-  color: #1a7d1a;
+  background: var(--color-success-bg);
+  color: var(--color-success);
 }
 
 .badgeShopping {
-  background: #fff0e6;
-  color: #b35900;
+  background: var(--color-warning-bg);
+  color: var(--color-warning);
 }
 
 .badgeFood {
-  background: #fff5cc;
-  color: #998000;
+  background: var(--color-warning-bg);
+  color: var(--color-warning);
+  opacity: 0.85;
 }
 
 .badgeUtilities {
-  background: #e6f0fa;
-  color: #1a5c8a;
+  background: var(--color-info-bg);
+  color: var(--color-info);
 }
 
 .badgeTransfer {
-  background: #f0e6ff;
-  color: #5c1a8a;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
 }
