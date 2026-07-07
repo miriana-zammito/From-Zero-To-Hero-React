@@ -30,3 +30,14 @@
     color: var(--color-primary);
   }
 }
+
+.active {
+  display: block;
+  padding: 10px 24px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  text-decoration: none;
+  background: var(--color-primary-light);
+  border-right: 3px solid var(--color-primary);
+}
