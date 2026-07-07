@@ -85,20 +85,7 @@ export default function TransactionList({ movements, isLoading = false }: Transa
     }
   }, [showBoundary]);
 
-  /* ── Early return: skeleton loader ── */
-  if (isLoading) {
-    return (
-      <div className={styles.wrapper} aria-busy="true" aria-label="Caricamento movimenti">
-        <div className={styles.skeletonFilter} />
-        <div className={styles.skeletonLine} />
-        {Array.from({ length: 3 }).map((_, i) => (
-          <div key={i} className={styles.skeletonRow} />
-        ))}
-      </div>
-    );
-  }
-
-  /* Filtra e ordina — useMemo */
+  /* ── Filtra e ordina — useMemo ── */
   const filteredMovements = useMemo(() => {
     return movements
       .filter((m) => {
@@ -108,10 +95,10 @@ export default function TransactionList({ movements, isLoading = false }: Transa
           if (!m.description.toLowerCase().includes(q)) return false;
         }
         /* Filtro tipo */
-        if (filters.type !== 'all' && m.direction !== filters.type.toLowerCase()) return false;
+        if (filters.type !== 'all' && m.type !== filters.type) return false;
         /* Filtro dateRange */
         if (filters.dateRange) {
-          const t = new Date(m.executedAt).getTime();
+          const t = new Date(m.date).getTime();
           const start = filters.dateRange.start
             ? new Date(filters.dateRange.start).getTime()
             : -Infinity;
@@ -134,7 +121,7 @@ export default function TransactionList({ movements, isLoading = false }: Transa
             return (a.amount - b.amount) * dir;
           case 'date':
           default:
-            return (new Date(a.executedAt).getTime() - new Date(b.executedAt).getTime()) * dir;
+            return (new Date(a.date).getTime() - new Date(b.date).getTime()) * dir;
         }
       });
   }, [movements, filters]);
@@ -145,8 +132,8 @@ export default function TransactionList({ movements, isLoading = false }: Transa
     let debits = 0;
 
     for (const m of filteredMovements) {
-      if (m.direction === 'credit') credits += m.amount;
-      else debits += m.amount;
+      if (m.type === 'CREDIT') credits += m.amount;
+      else debits += Math.abs(m.amount);
     }
 
     return {
@@ -158,44 +145,54 @@ export default function TransactionList({ movements, isLoading = false }: Transa
 
   return (
     <div className={styles.wrapper}>
-      <button
-        onClick={handleCrash}
-        style={{ marginBottom: 8, fontSize: 12, opacity: 0.5 }}
-        title="useErrorBoundary demo"
-      >
-        💥 Crash (demo)
-      </button>
+      {isLoading ? (
+        <>
+          <div className={styles.skeletonFilter} />
+          <div className={styles.skeletonLine} />
+          {Array.from({ length: 3 }).map((_, i) => (
+            <div key={i} className={styles.skeletonRow} />
+          ))}
+        </>
+      ) : (
+        <>
+          <button
+            onClick={handleCrash}
+            style={{ marginBottom: 8, fontSize: 12, opacity: 0.5 }}
+            title="useErrorBoundary demo"
+          >
+            💥 Crash (demo)
+          </button>
 
-      <FilterPanel
-        filters={filters}
-        dispatch={dispatch}
-        searchInputRef={searchRef}
-      />
+          <FilterPanel
+            filters={filters}
+            dispatch={dispatch}
+            searchInputRef={searchRef}
+          />
 
-      {/* AND (&&): totali solo se ci sono movimenti filtrati */}
-      {filteredMovements.length > 0 && (
-        <p className={styles.summary}>
-          {filteredMovements.length} di {movements.length} movimenti
-          {' — '}
-          Entrate: {totals.credits.toFixed(2)} €
-          {' | '}
-          Uscite: {totals.debits.toFixed(2)} €
-        </p>
+          {filteredMovements.length > 0 && (
+            <p className={styles.summary}>
+              {filteredMovements.length} di {movements.length} movimenti
+              {' — '}
+              Entrate: {totals.credits.toFixed(2)} €
+              {' | '}
+              Uscite: {totals.debits.toFixed(2)} €
+            </p>
+          )}
+
+          <div className={styles.list}>
+            {filteredMovements.length === 0 ? (
+              <p className={styles.empty}>Nessun movimento trovato.</p>
+            ) : (
+              filteredMovements.map((mov) => (
+                <TransactionItem
+                  key={mov.id}
+                  movement={mov}
+                />
+              ))
+            )}
+          </div>
+        </>
       )}
-
-      {/* Lista */}
-      <div className={styles.list}>
-        {filteredMovements.length === 0 ? (
-          <p className={styles.empty}>Nessun movimento trovato.</p>
-        ) : (
-          filteredMovements.map((mov) => (
-            <TransactionItem
-              key={mov.id}
-              movement={mov}
-            />
-          ))
-        )}
-      </div>
     </div>
   );
 }

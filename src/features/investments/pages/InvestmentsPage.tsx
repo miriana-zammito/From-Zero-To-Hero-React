@@ -1,7 +1,6 @@
 import { useTheme } from '@/store';
 
-// Rimosso export default per testare Error Boundary con fallback visibile
-function InvestmentsPage() {
+export default function InvestmentsPage() {
   const { theme } = useTheme();
 
   return (
